@@ -1,24 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+import Todos from './Components/Todos';
+import React, { useState } from 'react';
 
 function App() {
+  const onDelete = (todo)=>{
+    setTodos(todos.filter((e)=>{
+      return e!==todo;
+    }));
+    console.log("Deleted", todo)
+  }
+
+  let [todos, setTodos] = useState([
+    {
+      s_no: 1,
+      task: "Finish Homework",
+      description: "ribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button ",
+      completed: false
+    },
+    {
+      s_no: 5,
+      task: "Finish Homework",
+      description: "ribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button ",
+      completed: false
+    },
+    {
+      s_no: 2,
+      task: "Finish Reac App",
+      description: "ribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button ",
+      completed: false
+    },
+    {
+      s_no: 3,
+      task: "Finish Lab",
+      description: "ribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button ",
+      completed: false
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar title='Todo App' searchBar={true} />
+      <Todos todos={todos} onDelete={onDelete}/>
+      <Footer />
+    </>
   );
 }
 
