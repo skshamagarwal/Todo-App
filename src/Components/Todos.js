@@ -1,9 +1,12 @@
 import React from 'react'
 
 export default function Todos(props) {
+    let todoStyle = {
+        minHeight: "39.6vh"
+    }
     return (
-        <div className="container">
-            <h3 className="text-center my-5">Todo List</h3>
+        <div className="container" style={todoStyle}>
+            <h3 className="text-center my-4">Todo List</h3>
             {
                 props.todos.length === 0
                     ? <div className="text-center">No Todos to display</div>
