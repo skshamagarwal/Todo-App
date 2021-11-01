@@ -26,7 +26,7 @@ export default function AddTodo(props) {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Task Description</label>
-                    <textarea className="form-control" value={description} onChange={(e) => { setDesc(e.target.value) }} id="description" rows="3"></textarea>
+                    <textarea className="form-control" value={description} onChange={(e) => { setDesc(e.target.value) }} id="description" rows="3" placeholder="Enter your task description here"></textarea>
                 </div>
                 <button type="submit" className="btn btn-success ">Submit</button>
             </form>

@@ -38,8 +38,11 @@ function App() {
     console.log("Task added ->", taskInfo)
   }
 
-  const markDone = (todo) => {
-
+  const markDone = (todo_id) => {
+    const elementsIndex = todos.findIndex(element => element.id === todo_id);
+    let temp = [...todos]
+    temp[elementsIndex] = { ...temp[elementsIndex], completed: !temp[elementsIndex].completed }
+    setTodos(temp);
   }
 
   const onDelete = (todo) => {
@@ -69,7 +72,7 @@ function App() {
             return (
               <>
                 <AddTodo addTodo={addTodo} />
-                <Todos todos={todos} onDelete={onDelete} />
+                <Todos todos={todos} onDelete={onDelete} markDone={markDone} />
               </>
             )
           }}>

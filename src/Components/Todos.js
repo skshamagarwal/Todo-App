@@ -17,12 +17,19 @@ export default function Todos(props) {
                                     <h5 className="card-title">{element.task}</h5>
                                     <h6 className="card-subtitle mb-2 text-muted">Task Id {element.s_no}</h6>
                                     <p className="card-text"><b>Description:</b> {element.description}</p>
-                                    <button type="button" className="btn btn-success btn-sm mx-1">Mark Done</button>
-                                    <button type="button" className="btn btn-danger btn-sm mx-1" onClick={() => { props.onDelete(element) }}>Delete</button>
                                     {
-                                        element.completed ? <a href="#" className="card-link">Task Finished</a>
-                                            : <a href="#" className="card-link">Task Pending</a>
+                                        element.completed
+                                            ? <button type="button" className="btn btn-warning btn-sm" onClick={() => { props.markDone(element.id) }}>Mark Pending</button>
+                                            : <button type="button" className="btn btn-success btn-sm" onClick={() => { props.markDone(element.id) }}>Mark Done</button>
                                     }
+                                    <button type="button" className="btn btn-danger btn-sm mx-2" onClick={() => { props.onDelete(element) }}>Delete</button>
+                                    <div className="mt-3">
+                                        {
+                                            element.completed
+                                                ? <p className="text-success"><b>Task Finished </b></p>
+                                                : <p className="text-danger"><b> Task Pending </b></p>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         )
