@@ -5,14 +5,16 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Todos from './Components/Todos';
 import AddTodo from './Components/AddTodo';
+import About from './Components/About';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
 
   let initTodo;
-  if (localStorage.getItem("todos")=== null){
+  if (localStorage.getItem("todos") === null) {
     initTodo = [];
   }
-  else{
+  else {
     initTodo = JSON.parse(localStorage.getItem("todos"));
   }
 
@@ -34,8 +36,10 @@ function App() {
     }
     setTodos([...todos, taskInfo]);
     console.log("Task added ->", taskInfo)
+  }
 
-    // localStorage.setItem("todos", JSON.stringify(todos))
+  const markDone = (todo) => {
+
   }
 
   const onDelete = (todo) => {
@@ -52,34 +56,33 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos])
 
-  
-  // let [todos, setTodos] = useState([
-  //   {
-  //     s_no: 1,
-  //     task: "Finish Homework",
-  //     description: "ribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button ",
-  //     completed: false
-  //   },
-  //   {
-  //     s_no: 2,
-  //     task: "Finish Reac App",
-  //     description: "ribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button ",
-  //     completed: false
-  //   },
-  //   {
-  //     s_no: 3,
-  //     task: "Finish Lab",
-  //     description: "ribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button ",
-  //     completed: false
-  //   }
-  // ])
 
   return (
     <>
-      <Navbar title='Todo App' searchBar={true} />
-      <AddTodo addTodo={addTodo} />
-      <Todos todos={todos} onDelete={onDelete} />
-      <Footer />
+      <Router>
+        <Navbar title='Todo App' searchBar={true} />
+
+        <Switch>
+
+          {/* Switch to HomePage */}
+          <Route exact path="/" render={() => {
+            return (
+              <>
+                <AddTodo addTodo={addTodo} />
+                <Todos todos={todos} onDelete={onDelete} />
+              </>
+            )
+          }}>
+          </Route>
+
+          {/* Switch to AboutPage */}
+          <Route exact path="/about">
+            <About />
+          </Route>
+        </Switch>
+
+        <Footer />
+      </Router>
     </>
   );
 }
